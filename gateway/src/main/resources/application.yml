@@ -1,0 +1,26 @@
+server:
+  port: 8088
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: auth
+          uri: lb://auth
+          predicates:
+            - Path=/auth/**
+        - id: test
+          uri: lb://test
+          predicates:
+            - Path=/test/**
+          filters:
+            - AuthorizationHeaderFilter
