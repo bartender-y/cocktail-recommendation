@@ -19,8 +19,8 @@ import java.util.Map;
 
 @Component
 public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationHeaderFilter.Config> {
-//    @Autowired
-//    private JwtUtil jwtUtil;
+    @Autowired
+    private JwtUtil jwtUtil;
 
     public AuthorizationHeaderFilter(){
         super(Config.class);
@@ -34,6 +34,8 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
         return (exchange, chain) -> {
             String token = exchange.getRequest().getHeaders().get("Authorization").get(0);//.substring(7);
             System.out.println("token = " + token);
+            boolean jwtTokenValid = jwtUtil.isJwtTokenValid(token);
+            System.out.println("jwtTokenValid = " + jwtTokenValid);
             Map<String, Object> userInfo = new HashMap<>();
             userInfo.put("memberId", "1");
             addAuthorizationHeaders(exchange.getRequest(), userInfo);
