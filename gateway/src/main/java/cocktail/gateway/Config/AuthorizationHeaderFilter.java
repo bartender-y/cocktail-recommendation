@@ -14,8 +14,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationHeaderFilter.Config> {
@@ -34,19 +32,16 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
         return (exchange, chain) -> {
             String token = exchange.getRequest().getHeaders().get("Authorization").get(0);//.substring(7);
             System.out.println("token = " + token);
-            boolean jwtTokenValid = jwtUtil.isJwtTokenValid(token);
-            System.out.println("jwtTokenValid = " + jwtTokenValid);
-            Map<String, Object> userInfo = new HashMap<>();
-            userInfo.put("memberId", "1");
-            addAuthorizationHeaders(exchange.getRequest(), userInfo);
+            String userId = jwtUtil.authorizeAndGetUserId(token);
+            addAuthorizationHeaders(exchange.getRequest(), userId);
 
             return chain.filter(exchange);
         };
     }
 
-    private void addAuthorizationHeaders(ServerHttpRequest request, Map<String, Object> userInfo) {
+    private void addAuthorizationHeaders(ServerHttpRequest request, String userId) {
         request.mutate()
-                .header("User-Id", userInfo.get("memberId").toString())
+                .header("User-Id", userId)
                 .build();
     }
 

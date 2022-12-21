@@ -1,12 +1,7 @@
 package cocktail.gateway.Config;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -22,7 +17,7 @@ public class JwtUtil {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    public boolean isJwtTokenValid(String token){
+    public String authorizeAndGetUserId(String token){
         boolean isValid = true;
 
         String subject = null;
@@ -36,6 +31,9 @@ public class JwtUtil {
         if (subject == null || subject.isEmpty()){
             isValid = false;
         }
-        return isValid;
+        if (!isValid){
+            throw new RuntimeException("token is not valid");
+        }
+        return subject;
     }
 }
