@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
-@Controller
+
 @RestController
 @RequestMapping("/auth")
 public class JWTController {
@@ -44,7 +44,7 @@ public class JWTController {
             logger.info(">>>>> login 시도 : " + loginRequestDto.toString());
             User authUser =  JWTUserDetailsService.authenticateByEmailAndPassword(loginRequestDto.getEmail(),loginRequestDto.getPassword());
             logger.info(">>>>> authUser : " + authUser.toString());
-            String token = jwtTokenGenerator.createToken(authUser.getEmail(), authUser.getRoles());
+            String token = jwtTokenGenerator.createToken(authUser.getUserId(), authUser.getRoles());
             LoginResponseDto responseDto = new LoginResponseDto(token);
             return ResponseEntity.ok(responseDto);
         }catch (Exception e){

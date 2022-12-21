@@ -12,12 +12,11 @@
 //import org.springframework.stereotype.Component;
 //
 //import javax.annotation.PostConstruct;
-//import javax.servlet.http.HttpServletRequest;
 //import java.util.Base64;
 //import java.util.Date;
 //import java.util.List;
 //
-////@Component
+//@Component
 //@RequiredArgsConstructor
 //public class JwtTokenProvider {
 //    private String secretKey = "cocktailrecommandation";
@@ -29,22 +28,22 @@
 //        secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
 //    }
 //
-//    public String createToken(String userPk, List<String> roles){
-////        Map<String, Object> headers = new HashMap<String, Object>();
-////        headers.put("typ", "JWT");
-////        headers.put("alg", "HS256");
-//
-//        Claims claims = Jwts.claims().setSubject(userPk);
-//        claims.put("roles",roles);
-//        Date now = new Date();
-//        return Jwts.builder()
-//                .setIssuer("cocktailAuthServer")
-//                .setClaims(claims)
-//                .setIssuedAt(now)
-//                .setExpiration(new Date(now.getTime()+ tokenValidTime))
-//                .signWith(SignatureAlgorithm.HS256,secretKey)
-//                .compact();
-//    }
+////    public String createToken(String userPk, List<String> roles){
+//////        Map<String, Object> headers = new HashMap<String, Object>();
+//////        headers.put("typ", "JWT");
+//////        headers.put("alg", "HS256");
+////
+////        Claims claims = Jwts.claims().setSubject(userPk);
+////        claims.put("roles",roles);
+////        Date now = new Date();
+////        return Jwts.builder()
+////                .setIssuer("cocktailAuthServer")
+////                .setClaims(claims)
+////                .setIssuedAt(now)
+////                .setExpiration(new Date(now.getTime()+ tokenValidTime))
+////                .signWith(SignatureAlgorithm.HS256,secretKey)
+////                .compact();
+////    }
 //
 //    public Authentication getAuthentication(String token){
 //        UserDetails userDetails = null;
@@ -57,9 +56,9 @@
 //    }
 //
 //    // request에서 header에 token값을 가져옴 => front에서 header에 Token을 넣어줘야함
-//    public String resolveToken(HttpServletRequest request){
-//        return request.getHeader("Authorization");
-//    }
+////    public String resolveToken(HttpServletRequest request){
+////        return request.getHeader("Authorization");
+////    }
 //
 //    public boolean validateToken(String jwtToken){
 //        try{
