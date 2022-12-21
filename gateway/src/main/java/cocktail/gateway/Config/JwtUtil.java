@@ -1,11 +1,14 @@
 package cocktail.gateway.Config;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.Base64;
+import java.util.Date;
 
 @Component
 @RequiredArgsConstructor
@@ -18,7 +21,7 @@ public class JwtUtil {
     }
 
     public String authorizeAndGetUserId(String token){
-        boolean isValid = true;
+        boolean isValid = validateTokenExpiration(token);
 
         String subject = null;
         try{
@@ -35,5 +38,14 @@ public class JwtUtil {
             throw new RuntimeException("token is not valid");
         }
         return subject;
+    }
+
+    public boolean validateTokenExpiration(String token){
+        try{
+            Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+            return !claims.getBody().getExpiration().before(new Date());
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
