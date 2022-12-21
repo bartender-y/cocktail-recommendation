@@ -14,7 +14,7 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: user
+        - id: auth
           uri: lb://auth
           predicates:
             - Path=/auth/**
