@@ -15,10 +15,12 @@ spring:
     gateway:
       routes:
         - id: user
-          uri: lb://user
+          uri: lb://auth
           predicates:
-            - Path=/user/**
-#        - id: delivery-service
-#          uri: lb://delivery
-#          predicates:
-#            - Path=/delivery-service/**
+            - Path=/auth/**
+        - id: test
+          uri: lb://test
+          predicates:
+            - Path=/test/**
+          filters:
+            - AuthorizationHeaderFilter
