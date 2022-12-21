@@ -19,7 +19,7 @@ spring:
           predicates:
             - Path=/auth/**
         - id: test
-          uri: lb://test
+          uri: http://localhost:8085
           predicates:
             - Path=/test/**
           filters:
