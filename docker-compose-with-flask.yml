@@ -27,6 +27,7 @@ services:
       context: ./auth
     environment:
       - eureka.client.serviceUrl.defaultZone=http://discovery:8761/eureka
+      - flask.url=http://flask:5000
     depends_on:
       - gateway
       - discovery
