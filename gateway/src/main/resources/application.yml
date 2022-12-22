@@ -8,6 +8,9 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
+flask:
+  url: http://localhost:5000
+
 spring:
   application:
     name: gateway
@@ -18,9 +21,9 @@ spring:
           uri: lb://auth
           predicates:
             - Path=/auth/**
-        - id: test
-          uri: lb://test
+        - id: flask
+          uri: ${flask.url}
           predicates:
-            - Path=/test/**
+            - Path=/flask/**
           filters:
             - AuthorizationHeaderFilter

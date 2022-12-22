@@ -1,0 +1,43 @@
+# flask도 도커 컨테이너로 함께 실행되는 코드
+# frontend에서 사용하는 용도 
+# flask, spring(eureka, gateway, auth)가 모두 실행됩니다. 
+# localhost:8088로 요청을 보내면 처리됩니다. 
+
+version: '3'
+services:
+  discovery:
+    build: 
+      context: ./discovery
+    ports: 
+      - "8761:8761"
+
+  gateway:
+    build: 
+      context: ./gateway
+    depends_on:
+      - discovery
+    ports: 
+      - "8088:8088"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://discovery:8761/eureka
+      - flask.url=http://flask:5000
+
+  auth:
+    build: 
+      context: ./auth
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://discovery:8761/eureka
+    depends_on:
+      - gateway
+      - discovery
+    ports: 
+      - "8081:8081" 
+
+  flask:
+    build: 
+      context: ./flask
+    ports: 
+      - "5000:5000"
+
+
+# 실행: docker-compose -f docker-compose-with-flask.yml up --build
