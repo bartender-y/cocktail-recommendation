@@ -3,5 +3,12 @@
   background-color: white;
 }
 .star-icon{
-  color: blue;
+  font-size: 25px;
+  color: rgb(170, 175, 31);
+}
+
+.star-container{
+  display: flex;
+  justify-content: center;
+  margin: 10px;
 }

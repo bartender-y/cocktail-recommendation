@@ -1,31 +1,94 @@
-.navigation{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 
   width: 100%;
-  display:flex;
+  display: flex;
   font-size: 20px;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(115, 103, 103);
+  background-color: #403b35;
+  z-index: 1;
 }
 
-.nav_home{
+.nav_home {
   justify-content: left;
   align-items: center;
-  
+
   padding: 5px;
 }
-.logo{
+.logo {
   padding: 5px;
   text-decoration: none;
   color: black;
 }
 
-.user-core{
+.user-core {
   justify-items: right;
   text-decoration: none;
   padding: 10px;
+}
+
+.nav-logo-img {
+  height: 50px;
+  object-fit: contain;
+}
+
+.nav-button {
+  text-decoration: none;
+  align-items: center;
+  background-color: #e7e7e7;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto,
+    "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell,
+    "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 3px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+    box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+    color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.nav-button:hover {
+  background-color: #16437e;
+  color: #ffffff;
+}
+
+.nav-button:active {
+  background: #09223b;
+  color: rgb(255, 255, 255, 0.7);
+}
+
+.nav-button:disabled {
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.nav-button:hover {
+  background-color: #1e293b;
+  color: #fff;
 }

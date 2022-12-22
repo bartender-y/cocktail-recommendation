@@ -9,11 +9,11 @@ export function UserDetails(props) {
       <h1>Join</h1>
       <div className="join-input">
         <div>
-          ID
+          {/* ID */}
           <input
             type="text"
             name="useremail"
-            placeholder="Eail"
+            placeholder="Email"
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -21,7 +21,7 @@ export function UserDetails(props) {
           />
         </div>
         <div>
-          Password
+          {/* Password */}
           <input
             type="password"
             name="password"
@@ -33,7 +33,7 @@ export function UserDetails(props) {
           />
         </div>
         <div>
-          birth
+          {/* birth */}
           <input
             type="text"
             name="brith"
@@ -45,24 +45,29 @@ export function UserDetails(props) {
           />
         </div>
         <div className="gender">
-          gender
+          {/* gender */}
           <div className="gender-checkbox">
             <input
+              className="gender-input"
               type="radio"
               name="gender"
+              id="male"
               onChange={(e) => {
                 setGender("MALE");
               }}
+              checked
             />
-            <span> male</span>
+            <label htmlFor="male"> Male</label>
             <input
+              className="gender-input"
               type="radio"
               name="gender"
+              id="female"
               onChange={(e) => {
                 setGender("FEMALE");
               }}
             />
-            <span> female</span>
+            <label htmlFor="female"> Female</label>
           </div>
         </div>
       </div>
