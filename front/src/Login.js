@@ -1,13 +1,13 @@
 import "./css/App.css";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useLogin } from "./LoginContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [login, action] = useLogin();
+  const [action] = useLogin();
 
   const loginHandler = () => {
     fetch(process.env.REACT_APP_BACKEND_SERVER_IP + "/auth/login", {
@@ -54,6 +54,9 @@ const Login = () => {
       <button className="login-btn" onClick={loginHandler}>
         Login
       </button>
+      <p className="message">
+        Not registered? <Link to="/join">Create an account</Link>
+      </p>
     </div>
   );
 };
