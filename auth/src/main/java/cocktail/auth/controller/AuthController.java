@@ -69,4 +69,9 @@ public class AuthController {
         return recommandInput;
     }
 
+    @GetMapping()
+    public String hello(){
+        return "hello";
+    }
+
 }
