@@ -13,4 +13,7 @@ public class JoinRequestDto {
     private String birth;
     private String password;
     private Gender gender;
+    private Integer proof;
+    private Integer fruity;
+    private Integer colorful;
 }
