@@ -1,0 +1,32 @@
+version: '3'
+services:
+  discovery:
+    build: 
+      context: ./discovery
+    ports: 
+      - "8761:8761"
+
+  gateway:
+    build: 
+      context: ./gateway
+    depends_on:
+      - discovery
+    ports: 
+      - "8088:8088"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://discovery:8761/eureka
+      - flask.url=http://host.docker.internal:5000
+
+  auth:
+    build: 
+      context: ./auth
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://discovery:8761/eureka
+    depends_on:
+      - gateway
+      - discovery
+    ports: 
+      - "8081:8081" 
+
+# 실행: docker-compose -f docker-compose-local.yml up --build
+# 실행: docker-compose -f docker-compose-local.yml up 
