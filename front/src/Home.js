@@ -15,7 +15,8 @@ const Home = () => {
     gradients: [],
     image: "",
   });
-  const [cfCocktail, setCfCocktail] = useState([]);
+  const [cfCocktails, setCfCocktails] = useState([]);
+  const [keywordRec, setKeywordREc] = useState(false);
   const [login] = useLogin();
 
   const resetCocktail = () => {
@@ -24,7 +25,6 @@ const Home = () => {
 
   useEffect(() => {
     if (login) {
-      // console.log("hi")
       fetch(process.env.REACT_APP_BACKEND_SERVER_IP + "/flask/today-cf", {
         method: "GET",
         headers: {
@@ -35,13 +35,18 @@ const Home = () => {
         .then((res) => res.json())
         .then((res) => {
           setTodayCocktail(res.today_cocktail);
-          setCfCocktail(res.cf_cocktail);
+          setCfCocktails(res.cf_cocktails);
         });
     }
     return;
   }, [login]);
 
   const KeywordRequestHandler = () => {
+    if (!login) {
+      return alert(
+        "키워드 기반 검색기능을 이용 하시려면 로그인 해주시기 바랍니다."
+      );
+    }
     fetch(
       process.env.REACT_APP_BACKEND_SERVER_IP +
         "/flask/search?keyword=" +
@@ -57,12 +62,25 @@ const Home = () => {
       .then((res) => res.json())
       .then((res) => {
         setCockTail(res);
+        setTodayCocktail({
+          name: "",
+          proof: "",
+          gradients: [],
+          image: "",
+        });
+        setCfCocktails([]);
+        setKeywordREc(true);
       });
+  };
+
+  const onPressKey = (e) => {
+    if (e.code === "Enter") {
+      KeywordRequestHandler();
+    }
   };
 
   return (
     <div className="home">
-      {login ? <div>hi</div> : null}
       <div className="keyword">
         <input
           className="keyword-input"
@@ -70,6 +88,7 @@ const Home = () => {
           onChange={(e) => {
             setKeyword(e.target.value);
           }}
+          onKeyDown={onPressKey}
           value={keyword}
         />
         <button
@@ -86,16 +105,14 @@ const Home = () => {
         </button>
       </div>
 
-      {{ cockTail } ? <ContentBased cockTail={cockTail} /> : null}
+      {{ cockTail } && login ? <ContentBased cockTail={cockTail} /> : null}
       <div className="today-cocktail-box">
-        {login && todayCocktail !== null ? (
+        {login && !keywordRec ? (
           <TodayCockTail todayCocktail={todayCocktail} />
         ) : null}
       </div>
       <div className="cf-cocktail-box">
-        {login && todayCocktail !== null ? (
-          <CfCocktail cfCocktail={cfCocktail} />
-        ) : null}
+        {login && !keywordRec ? <CfCocktail cfCocktails={cfCocktails} /> : null}
       </div>
     </div>
   );
