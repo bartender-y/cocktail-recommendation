@@ -9,8 +9,8 @@
 ```docker-compose -f docker-compose-with-flask.yml up --build```  
 
 3. 요청 테스트  
-- 모든 요청은 http://localhost:8088으로 보내주세요  
-- 요청 예시: http://localhost:8088/auth/~, http://localhost:8088/flask/~   
+- 모든 요청은 8088 포트로 보내주세요  
+- 요청 예시: http://localhost:8088/auth/login, http://localhost:8088/flask/star    
 - 컨테이너를 띄우고 나서 eureka에 등록되고 1분 정도 지난 후 api 요청이 처리됩니다. 
 - 주의) flask로 보내는 모든 요청에는 Authorization 헤더에 로그인 시 발급되는 토큰을 담아서 보내야 합니다. 
 
