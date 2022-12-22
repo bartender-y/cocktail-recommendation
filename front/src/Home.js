@@ -17,7 +17,7 @@ const Home = () => {
   });
   const [cfCocktails, setCfCocktails] = useState([]);
   const [keywordRec, setKeywordREc] = useState(false);
-  const [login] = useLogin();
+  const [login, action] = useLogin();
 
   const resetCocktail = () => {
     setCockTail([]);
@@ -34,6 +34,7 @@ const Home = () => {
       })
         .then((res) => res.json())
         .then((res) => {
+          console.log(res.cf_cocktails);
           setTodayCocktail(res.today_cocktail);
           setCfCocktails(res.cf_cocktails);
         });
@@ -84,7 +85,7 @@ const Home = () => {
       <div className="keyword">
         <input
           className="keyword-input"
-          placeholder="enter your mood"
+          placeholder="What type of cocktail are you looking for?"
           onChange={(e) => {
             setKeyword(e.target.value);
           }}
@@ -92,7 +93,7 @@ const Home = () => {
           value={keyword}
         />
         <button
-          className="input-submit"
+          className="home-button input-submit"
           type="submit"
           onClick={KeywordRequestHandler}
         >
@@ -105,14 +106,24 @@ const Home = () => {
         </button>
       </div>
 
-      {{ cockTail } && login ? <ContentBased cockTail={cockTail} /> : null}
+      <div className="content-based-box">
+        {{ cockTail } && login ? <ContentBased cockTail={cockTail} /> : null}
+      </div>
       <div className="today-cocktail-box">
         {login && !keywordRec ? (
-          <TodayCockTail todayCocktail={todayCocktail} />
+          <div className="layout">
+            <h5>이건 어때요?</h5>
+            <TodayCockTail todayCocktail={todayCocktail} />
+          </div>
         ) : null}
       </div>
       <div className="cf-cocktail-box">
-        {login && !keywordRec ? <CfCocktail cfCocktails={cfCocktails} /> : null}
+        {login && !keywordRec ? (
+          <div className="layout">
+            <h5>저건 어때요?</h5>
+            <CfCocktail cfCocktails={cfCocktails} />
+          </div>
+        ) : null}
       </div>
     </div>
   );

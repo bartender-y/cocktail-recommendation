@@ -7,7 +7,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [action] = useLogin();
+  const [login,action] = useLogin();
 
   const loginHandler = () => {
     fetch(process.env.REACT_APP_BACKEND_SERVER_IP + "/auth/login", {
