@@ -1,6 +1,6 @@
 
 
-const starHandler = (star, name, e) => {
+const APIStarHandler = (star, name, e) => {
   e.preventDefault();
   fetch(process.env.REACT_APP_BACKEND_SERVER_IP+ "/flask/star", {
     method: "POST",
@@ -16,4 +16,4 @@ const starHandler = (star, name, e) => {
   // .then((res) => console.log(res));
 };
 
-export {starHandler}
+export {APIStarHandler}
