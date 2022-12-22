@@ -90,12 +90,18 @@ const MackcholVSOriginal = (props) => {
 export function ProofSelector(props) {
   const { setProof, setStage } = props;
   const [innerStage, setInnerStage] = useState(0);
-  const [isProof, setIsProof] = useState([]);
+  const [isProof, setIsProof] = useState([0]);
 
-  console.log("isProof " + isProof);
 
   const goToNextStage = () => {
-    setProof(isProof);
+    const resultProof = isProof.reduce((a,b) =>a+b)
+    let ret = -1;
+    if(resultProof >0){
+      ret = 1;
+    }else{
+      ret = 0;
+    }
+    setProof(ret);
     setStage((prev) => prev + 1);
   };
 

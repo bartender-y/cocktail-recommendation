@@ -92,10 +92,16 @@ export function FruitySelector(props) {
   const [innerStage, setInnerStage] = useState(0);
   const [isFruity, setIsFruity] = useState([]);
 
-  console.log("isFruity : " + isFruity);
 
   const goToNextStage = () => {
-    setFruity(isFruity);
+    const resultFruity = isFruity.reduce((a,b) =>a+b)
+    let ret = -1;
+    if(resultFruity >0){
+      ret = 1;
+    }else{
+      ret = 0;
+    }
+    setFruity(ret);
     setStage((prev) => prev + 1);
   };
 
