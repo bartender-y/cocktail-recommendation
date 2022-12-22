@@ -1,0 +1,31 @@
+.navigation{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+
+  width: 100%;
+  display:flex;
+  font-size: 20px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(115, 103, 103);
+}
+
+.nav_home{
+  justify-content: left;
+  align-items: center;
+  
+  padding: 5px;
+}
+.logo{
+  padding: 5px;
+  text-decoration: none;
+  color: black;
+}
+
+.user-core{
+  justify-items: right;
+  text-decoration: none;
+  padding: 10px;
+}

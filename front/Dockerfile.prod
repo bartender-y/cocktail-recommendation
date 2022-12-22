@@ -1,0 +1,12 @@
+FROM node:14 as build
+WORKDIR "/usr/src/app"
+COPY package.json .
+RUN npm install
+COPY . . 
+RUN npm run build
+
+FROM nginx
+#이 명령어를 사용해서 이전 스테이지에서 산출한 정적 바이너리를 NGINX의 /usr/share/nginx/html로 복사
+# COPY --from을 사용하면 이전 스테이지에서 build된 것만 가지고 사용가능
+COPY --from=build "/usr/src/app/build" "/usr/share/nginx/html"
+
