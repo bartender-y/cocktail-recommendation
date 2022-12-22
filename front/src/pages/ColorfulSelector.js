@@ -17,14 +17,26 @@ const Colorful_test1 = (props) => {
   };
 
   return (
-    <div className="Fruity_test">
-      <input type="radio" name="colorful1" onClick={DownHandler}></input>
-      <span>모나미</span>
-      <input type="radio" name="colorful1" onClick={UPHandler}></input>
-      <span>화려한 옷</span>
-      <button className="next-stage" onClick={innerStageHandler}>
-        next
-      </button>
+    <div id="container">
+      <div class="box">
+        <h1>무슨 룩을 더 좋아하세요?</h1>
+        <form class="form">
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{DownHandler(); innerStageHandler()}}/>
+            <span class="custom-radio-button">
+              <img class="img-left" src='img/monami.jpg'  width="110" height="110"></img>
+              <p>모나미</p>
+            </span>
+          </label>
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{UPHandler(); innerStageHandler()}}/> 
+            <span class="custom-radio-button">
+              <img class="img-right" src='img/colorful_look.jpg' width="110" height="110"></img>
+              <p>화려한 옷</p>
+            </span>
+          </label>
+        </form>
+      </div>
     </div>
   );
 };
@@ -46,14 +58,26 @@ const Colorful_test2 = (props) => {
   };
 
   return (
-    <div className="Fruity_test">
-      <input type="radio" name="colorful2" onClick={DownHandler}></input>
-      <span>화려하지 않은 칵테일</span>
-      <input type="radio" name="colorful2" onClick={UPHandler}></input>
-      <span>화려한 칵테일</span>
-      <button className="next-stage" onClick={innerStageHandler}>
-        next
-      </button>
+    <div id="container">
+      <div class="box">
+        <h1>어떤 칵테일을 더 좋아하세요?</h1>
+        <form class="form">
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{DownHandler(); innerStageHandler()}}/>
+            <span class="custom-radio-button">
+              <img class="img-left" src='img/Martini.jpg'  width="110" height="110"></img>
+              <p>화려하지 않은 칵테일</p>
+            </span>
+          </label>
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{UPHandler(); innerStageHandler()}}/> 
+            <span class="custom-radio-button">
+              <img class="img-right" src='img/Blue Hawaii.jpg' width="110" height="110"></img>
+              <p>화려한 칵테일</p>
+            </span>
+          </label>
+        </form>
+      </div>
     </div>
   );
 };
@@ -75,16 +99,29 @@ const Colorful_test3 = (props) => {
   };
 
   return (
-    <div className="Fruity_test">
-      <input type="radio" name="colorful3" onClick={DownHandler}></input>
-      <span>타조</span>
-      <input type="radio" name="colorful3" onClick={UPHandler}></input>
-      <span>공작</span>
-      <button className="next-stage" onClick={innerStageHandler}>
-        next
-      </button>
+    <div id="container">
+      <div class="box">
+        <h1>어떤 동물을 더 좋아하세요?</h1>
+        <form class="form">
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{DownHandler(); innerStageHandler()}}/>
+            <span class="custom-radio-button">
+              <img class="img-left" src='img/tazo.jpg' width="110" height="110"></img>
+              <p>타조</p>
+            </span>
+          </label>
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{UPHandler(); innerStageHandler()}}/> 
+            <span class="custom-radio-button">
+              <img class="img-right" src='img/gongzak.jpg' width="110" height="110"></img>
+              <p>공작</p>
+            </span>
+          </label>
+        </form>
+      </div>
     </div>
   );
+
 };
 
 export function ColorfulSelector(props) {
@@ -122,9 +159,9 @@ export function ColorfulSelector(props) {
           setIsColorful={setIsColorful}
           setInnerStage={setInnerStage}
         />
-      ) : (
-        <button onClick={goToNextStage}> Next!</button>
-      )}
+      ) : 
+        goToNextStage()
+      }
     </div>
   );
 }

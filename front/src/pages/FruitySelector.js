@@ -17,14 +17,26 @@ const Fruity_test1 = (props) => {
   };
 
   return (
-    <div className="Fruity_test">
-      <input type="radio" name="fruity1" onClick={DownHandler}></input>
-      <span>바나나</span>
-      <input type="radio" name="fruity1" onClick={UPHandler}></input>
-      <span>귤</span>
-      <button className="next-stage" onClick={innerStageHandler}>
-        next
-      </button>
+    <div id="container">
+      <div class="box">
+        <h1>무슨 과일을 더 좋아하세요?</h1>
+        <form class="form">
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{DownHandler(); innerStageHandler()}}/>
+            <span class="custom-radio-button">
+              <img class="img-left" src='img/banana.jpg' width="110" height="110"></img>
+              <p>바나나</p>
+            </span>
+          </label>
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{UPHandler(); innerStageHandler()}}/> 
+            <span class="custom-radio-button">
+              <img class="img-right" src='img/ggull.jpg' width="110" height="110"></img>
+              귤
+            </span>
+          </label>
+        </form>
+      </div>
     </div>
   );
 };
@@ -45,15 +57,28 @@ const Fruity_test2 = (props) => {
     setFruity_test1(-1);
   };
 
+
   return (
-    <div className="Fruity_test">
-      <input type="radio" name="fruity2" onClick={DownHandler}></input>
-      <span>자몽에 이슬</span>
-      <input type="radio" name="fruity2" onClick={UPHandler}></input>
-      <span>참이슬</span>
-      <button className="next-stage" onClick={innerStageHandler}>
-        next
-      </button>
+    <div id="container">
+      <div class="box">
+        <h1>무슨 술을 더 좋아하세요?</h1>
+        <form class="form">
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{DownHandler(); innerStageHandler()}}/>
+            <span class="custom-radio-button">
+              <img class="img-left" src='img/zamong_isel.jpg' width="110" height="110"></img>
+              <p>자몽에 이슬</p>
+            </span>
+          </label>
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{UPHandler(); innerStageHandler()}}/> 
+            <span class="custom-radio-button">
+              <img class="img-right" src='img/cham_isel.jpg' width="110" height="110"></img>
+              <p>참이슬</p>
+            </span>
+          </label>
+        </form>
+      </div>
     </div>
   );
 };
@@ -75,14 +100,26 @@ const Fruity_test3 = (props) => {
   };
 
   return (
-    <div className="Fruity_test">
-      <input type="radio" name="fruity2" onClick={DownHandler}></input>
-      <span>딸기 막걸리</span>
-      <input type="radio" name="fruity2" onClick={UPHandler}></input>
-      <span>막걸리</span>
-      <button className="next-stage" onClick={innerStageHandler}>
-        next
-      </button>
+    <div id="container">
+      <div class="box">
+        <h1>무슨 막걸리를 더 좋아하세요?</h1>
+        <form class="form">
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{DownHandler(); innerStageHandler()}}/>
+            <span class="custom-radio-button">
+              <img class="img-left" src='img/strawberry_makgeolli.jpg' width="110" height="110"></img>
+              <p>딸기 막걸리</p>
+            </span>
+          </label>
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{UPHandler(); innerStageHandler()}}/> 
+            <span class="custom-radio-button">
+              <img class="img-right" src='img/makgeolli.jpg' width="110" height="110"></img>
+              <p>막걸리</p>
+            </span>
+          </label>
+        </form>
+      </div>
     </div>
   );
 };
@@ -114,7 +151,7 @@ export function FruitySelector(props) {
       ) : innerStage === 2 ? (
         <Fruity_test3 setIsFruity={setIsFruity} setInnerStage={setInnerStage} />
       ) : (
-        <button onClick={goToNextStage}> Next!</button>
+        goToNextStage()
       )}
     </div>
   );

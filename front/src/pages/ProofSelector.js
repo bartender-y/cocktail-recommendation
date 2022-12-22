@@ -1,3 +1,4 @@
+import "../css/drink-bti.css";
 import React, { useState } from "react";
 
 const BeerVSsoju = (props) => {
@@ -15,16 +16,27 @@ const BeerVSsoju = (props) => {
   const DownHandler = () => {
     setBSProof(-1);
   };
-
   return (
-    <div className="beerVSsoju">
-      <input type="radio" name="proof1" onClick={DownHandler} />
-      <span>beer</span>
-      <input type="radio" name="proof1" onClick={UPHandler} />
-      <span>soju</span>
-      <button className="next-stage" onClick={innerStageHandler}>
-        next
-      </button>
+    <div id="container">
+      <div class="box">
+        <h1>무슨 술을 좋아하나요?</h1>
+        <form class="form">
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{DownHandler(); innerStageHandler()}}/>
+            <span class="custom-radio-button">
+              <img class="img-left" src='img/beer.jpg' width="110" height="110"></img>
+              <p>맥주</p>
+            </span>
+          </label>
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{UPHandler(); innerStageHandler()}}/> 
+            <span class="custom-radio-button">
+              <img class="img-right" src='img/soju.jpg' width="110" height="110"></img>
+              소주
+            </span>
+          </label>
+        </form>
+      </div>
     </div>
   );
 };
@@ -46,14 +58,26 @@ const DrunkVSNonDrunk = (props) => {
   };
 
   return (
-    <div className="beerVSsoju">
-      <input type="radio" name="proof2" onClick={DownHandler} />
-      <span>NonDrunk</span>
-      <input type="radio" name="proof2" onClick={UPHandler} />
-      <span>Drunk</span>
-      <button className="next-stage" onClick={innerStageHandler}>
-        next
-      </button>
+    <div id="container">
+      <div class="box">
+        <h1>술을 마실 때 어떤 것을 선호하나요?</h1>
+        <form class="form">
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{DownHandler(); innerStageHandler()}}/>
+            <span class="custom-radio-button">
+              <img class="img-left" src='img/full_drink.jpg' width="110" height="110"></img>
+              <p>취할 때 까지 마시기</p>
+            </span>
+          </label>
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{UPHandler(); innerStageHandler()}}/> 
+            <span class="custom-radio-button">
+              <img class="img-right" src='img/soft_drink.jpg' width="110" height="110"></img>
+              적당히 마시기
+            </span>
+          </label>
+        </form>
+      </div>
     </div>
   );
 };
@@ -75,14 +99,26 @@ const MackcholVSOriginal = (props) => {
   };
 
   return (
-    <div className="beerVSsoju">
-      <input type="radio" name="proof3" onClick={DownHandler} />
-      <span>MackChol</span>
-      <input type="radio" name="proof3" onClick={UPHandler} />
-      <span>Original</span>
-      <button className="next-stage" onClick={innerStageHandler}>
-        next
-      </button>
+    <div id="container">
+      <div class="box">
+        <h1>친구의 생일날 선물로 사가고 싶은 술은?</h1>
+        <form class="form">
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{DownHandler(); innerStageHandler()}}/>
+            <span class="custom-radio-button">
+              <img class="img-left" src='img/makgulri.jpg' width="110" height="110"></img>
+              <p>느긋하고 달콤하게 오래 즐기는 막걸리</p>
+            </span>
+          </label>
+          <label class="custom-radio-button__container">
+            <input type="radio" name="radio" onClick={()=>{UPHandler(); innerStageHandler()}}/> 
+            <span class="custom-radio-button">
+              <img class="img-right" src='img/bbal_too.jpg' width="110" height="110"></img>
+              <p>신나니까 도수 높은 참이슬 오리지널(빨간 뚜껑)</p>
+            </span>
+          </label>
+        </form>
+      </div>
     </div>
   );
 };
@@ -120,7 +156,7 @@ export function ProofSelector(props) {
           setInnerStage={setInnerStage}
         />
       ) : (
-        <button onClick={goToNextStage}> Next!</button>
+        goToNextStage()
       )}
     </div>
   );
