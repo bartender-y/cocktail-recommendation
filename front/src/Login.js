@@ -7,10 +7,10 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [login,action] = useLogin();
+  const [login, action] = useLogin();
 
   const loginHandler = () => {
-    fetch(process.env.REACT_APP_MODEL_SERVER_IP + "/auth/login", {
+    fetch(process.env.REACT_APP_BACKEND_SERVER_IP + "/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,8 +23,8 @@ const Login = () => {
           localStorage.setItem("token", res.token);
           action.doLogin();
           navigate("/");
-        }else{
-          alert("로그인 에러, code status")
+        } else {
+          alert("로그인 에러, code status");
         }
       });
   };

@@ -3,16 +3,17 @@ import "./css/App.css";
 import { BsArrowCounterclockwise } from "react-icons/bs";
 import { useLogin } from "./LoginContext";
 import { ContentBased } from "./render/ContentBased";
-import { CFBased } from "./render/CFBased";
+import { TodayCockTail } from "./render/TodayCockTail";
+import { CfCocktail } from "./render/CfCockTail";
 
 const Home = () => {
   const [keyword, setKeyword] = useState("");
   const [cockTail, setCockTail] = useState([]);
   const [todayCocktail, setTodayCocktail] = useState({
-    name:"",
-    proof:"",
-    gradients:[],
-    image:""
+    name: "",
+    proof: "",
+    gradients: [],
+    image: "",
   });
   const [cfCocktail, setCfCocktail] = useState([]);
   const [login] = useLogin();
@@ -21,21 +22,20 @@ const Home = () => {
     setCockTail([]);
   };
 
-
   useEffect(() => {
     if (login) {
-      fetch(process.env.REACT_APP_MODEL_SERVER_IP + "/flask/today-cf", {
+      // console.log("hi")
+      fetch(process.env.REACT_APP_BACKEND_SERVER_IP + "/flask/today-cf", {
         method: "GET",
         headers: {
           Authorization: localStorage.getItem("token"),
+          Accept: "application / json",
         },
       })
         .then((res) => res.json())
         .then((res) => {
-          console.log(res);
-          
           setTodayCocktail(res.today_cocktail);
-          setCfCocktail(res.cf_cocktails)
+          setCfCocktail(res.cf_cocktail);
         });
     }
     return;
@@ -43,14 +43,19 @@ const Home = () => {
 
   const KeywordRequestHandler = () => {
     fetch(
-      process.env.REACT_APP_MODEL_SERVER_IP + "/flask/search?keyword=" + keyword,
+      process.env.REACT_APP_BACKEND_SERVER_IP +
+        "/flask/search?keyword=" +
+        keyword,
       {
         method: "GET",
+        headers: {
+          Accept: "application / json",
+          Authorization: localStorage.getItem("token"),
+        },
       }
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setCockTail(res);
       });
   };
@@ -81,19 +86,16 @@ const Home = () => {
         </button>
       </div>
 
-      {{ cockTail } ? 
-      <ContentBased
-      cockTail={cockTail}
-      />
-      : null}
+      {{ cockTail } ? <ContentBased cockTail={cockTail} /> : null}
       <div className="today-cocktail-box">
-      {login && todayCocktail!==null ? 
-      <CFBased
-      todayCocktail={todayCocktail}
-      />
-      
-      : 
-      null}
+        {login && todayCocktail !== null ? (
+          <TodayCockTail todayCocktail={todayCocktail} />
+        ) : null}
+      </div>
+      <div className="cf-cocktail-box">
+        {login && todayCocktail !== null ? (
+          <CfCocktail cfCocktail={cfCocktail} />
+        ) : null}
       </div>
     </div>
   );

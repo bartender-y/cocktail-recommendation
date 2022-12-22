@@ -92,10 +92,16 @@ export function ColorfulSelector(props) {
   const [innerStage, setInnerStage] = useState(0);
   const [isColorful, setIsColorful] = useState([]);
 
-  console.log("isColorful : " + isColorful);
 
   const goToNextStage = () => {
-    setColorful(isColorful);
+    const resultColor = isColorful.reduce((a,b) =>a+b)
+    let ret = -1;
+    if(resultColor >0){
+      ret = 1;
+    }else{
+      ret = 0;
+    }
+    setColorful(ret);
     setStage((prev) => prev + 1);
   };
 

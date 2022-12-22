@@ -23,16 +23,15 @@ const Join = () => {
   //about Colorful
   const [colorful, setColorful] = useState([]);
 
-  console.log(email, password, brith, gender);
-  console.log("now Stage : " + stage);
-  console.log("end Proof : " + proof);
-  console.log("end Fruity : " + fruity);
-  console.log("end Colorful : " + colorful);
-
+  // console.log(email, password, brith, gender);
+  // console.log("now Stage : " + stage);
+  // console.log("end Proof : " + proof);
+  // console.log("end Fruity : " + fruity);
+  // console.log("end Colorful : " + colorful);
 
   // joinHandler need to add Dbti data for join
   const joinHandler = () => {
-    fetch(process.env.REACT_APP_MODEL_SERVER_IP + "/auth/join", {
+    fetch(process.env.REACT_APP_BACKEND_SERVER_IP + "/auth/join", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,6 +41,9 @@ const Join = () => {
         password: password,
         birth: brith,
         gender: "MALE",
+        proof: proof,
+        fruity: fruity,
+        colorful: colorful,
       }),
     }).then((res) => {
       if (res.ok) {
