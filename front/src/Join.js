@@ -81,9 +81,11 @@ const Join = () => {
       ) : stage === 3 ? (
         <ColorfulSelector setColorful={setColorful} setStage={setStage} />
       ) : (
-        <button className="join" onClick={joinHandler}>
-          Join!
-        </button>
+        <div className="join1">
+          <button className="join-btn" onClick={joinHandler}>
+            Join!
+          </button>
+        </div>
       )}
 
       {stage === 0 ? (
