@@ -112,7 +112,7 @@ const Home = () => {
       <div className="today-cocktail-box">
         {login && !keywordRec ? (
           <div className="layout">
-            <h5>이건 어때요?</h5>
+            <h5>오늘의 칵테일</h5>
             <TodayCockTail todayCocktail={todayCocktail} />
           </div>
         ) : null}
@@ -120,7 +120,7 @@ const Home = () => {
       <div className="cf-cocktail-box">
         {login && !keywordRec ? (
           <div className="layout">
-            <h5>저건 어때요?</h5>
+            <h5>당신을 위한 추천 칵테일</h5>
             <CfCocktail cfCocktails={cfCocktails} />
           </div>
         ) : null}
