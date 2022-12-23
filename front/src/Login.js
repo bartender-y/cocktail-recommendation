@@ -24,7 +24,7 @@ const Login = () => {
           action.doLogin();
           navigate("/");
         } else {
-          alert("로그인 에러, code status");
+          alert("아이디랑 비밀번호를 확인해 주세요.");
         }
       });
   };

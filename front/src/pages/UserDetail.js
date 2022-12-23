@@ -6,7 +6,7 @@ export function UserDetails(props) {
 
   return (
     <div className="join">
-      <h1>Join</h1>
+      <h2>Join</h2>
       <div className="join-input">
         <div>
           {/* ID */}
@@ -55,7 +55,7 @@ export function UserDetails(props) {
               onChange={(e) => {
                 setGender("MALE");
               }}
-              checked
+              
             />
             <label htmlFor="male"> Male</label>
             <input
@@ -66,6 +66,7 @@ export function UserDetails(props) {
               onChange={(e) => {
                 setGender("FEMALE");
               }}
+              checked
             />
             <label htmlFor="female"> Female</label>
           </div>
